@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CropSense — Intelligent Crop Recommendation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="logo">
+        <span class="logo-icon" aria-hidden="true">🌾</span>
+        <span class="logo-text">CropSense</span>
+        <span class="author-tag" aria-label="Author">by Vinothkumar Durairaj</span>
+      </div>
+
+      <div class="nav-actions">
+        <a href="/dashboard" class="nav-link" aria-label="View model metrics dashboard">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/></svg>
+          Dashboard
+        </a>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg-pattern" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="hero-label">End-to-End Pipeline &amp; Web Application</p>
+      <h1 class="hero-title">Intelligent Crop<br/><em>Recommendation</em></h1>
+      <p class="project-subtitle">
+        End-to-End Machine Learning Pipeline &amp; Web Application<br/>
+        for Crop Recommendation System
+      </p>
+      <p class="hero-sub">
+        Enter your soil nutrients and environmental conditions below.<br/>
+        Our trained ML model will recommend the most suitable crop with full transparency.
+      </p>
+    </div>
+  </section>
+
+  <main class="main-container">
+
+    <div class="form-card">
+      <div class="form-card-header">
+        <h2>Soil &amp; Environmental Parameters</h2>
+        <p>All fields are required. Values must be within agronomic bounds.</p>
+      </div>
+
+      <form id="predictionForm" novalidate>
+
+        <div class="section-label"><span class="section-dot" style="background:#5C8A44"></span>Soil Nutrients (kg/ha)</div>
+        <div class="input-grid">
+          <div class="input-group-custom">
+            <label for="N">Nitrogen (N)</label>
+            <input type="number" id="N" name="N" placeholder="0 – 200" min="0" max="200" step="0.1" required aria-describedby="N-help"/>
+            <span class="input-unit">kg/ha</span>
+            <span class="invalid-msg" id="N-help">Enter a value between 0 and 200</span>
+          </div>
+          <div class="input-group-custom">
+            <label for="P">Phosphorus (P)</label>
+            <input type="number" id="P" name="P" placeholder="0 – 200" min="0" max="200" step="0.1" required/>
+            <span class="input-unit">kg/ha</span>
+            <span class="invalid-msg">Enter a value between 0 and 200</span>
+          </div>
+          <div class="input-group-custom">
+            <label for="K">Potassium (K)</label>
+            <input type="number" id="K" name="K" placeholder="0 – 250" min="0" max="250" step="0.1" required/>
+            <span class="input-unit">kg/ha</span>
+            <span class="invalid-msg">Enter a value between 0 and 250</span>
+          </div>
+        </div>
+
+        <div class="section-label" style="margin-top:2rem;"><span class="section-dot" style="background:#3D7A8A"></span>Environmental Conditions</div>
+        <div class="input-grid">
+          <div class="input-group-custom">
+            <label for="temperature">Temperature</label>
+            <input type="number" id="temperature" name="temperature" placeholder="0 – 50" min="0" max="50" step="0.01" required/>
+            <span class="input-unit">°C</span>
+            <span class="invalid-msg">Enter a value between 0 and 50</span>
+          </div>
+          <div class="input-group-custom">
+            <label for="humidity">Humidity</label>
+            <input type="number" id="humidity" name="humidity" placeholder="0 – 100" min="0" max="100" step="0.01" required/>
+            <span class="input-unit">%</span>
+            <span class="invalid-msg">Enter a value between 0 and 100</span>
+          </div>
+          <div class="input-group-custom">
+            <label for="ph">Soil pH</label>
+            <input type="number" id="ph" name="ph" placeholder="0 – 14" min="0" max="14" step="0.01" required/>
+            <span class="input-unit">pH</span>
+            <span class="invalid-msg">Enter a value between 0 and 14</span>
+          </div>
+          <div class="input-group-custom">
+            <label for="rainfall">Rainfall</label>
+            <input type="number" id="rainfall" name="rainfall" placeholder="0 – 3000" min="0" max="3000" step="0.01" required/>
+            <span class="input-unit">mm</span>
+            <span class="invalid-msg">Enter a value between 0 and 3000</span>
+          </div>
+        </div>
+
+        <div class="sample-row">
+          <span class="sample-label">Try a sample:</span>
+          <button type="button" class="sample-btn" data-sample="rice">🌾 Rice</button>
+          <button type="button" class="sample-btn" data-sample="maize">🌽 Maize</button>
+          <button type="button" class="sample-btn" data-sample="cotton">🌱 Cotton</button>
+          <button type="button" class="sample-btn" data-sample="mango">🥭 Mango</button>
+          <button type="button" class="sample-btn" data-sample="ambiguous">⚠ Edge case</button>
+        </div>
+
+        <button type="submit" class="predict-btn" id="submitBtn" aria-label="Run prediction">
+          <span class="btn-label">Predict Crop</span>
+          <span class="btn-icon" aria-hidden="true">→</span>
+          <span class="btn-loader" hidden aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-opacity="0.3"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
+          </span>
+        </button>
+      </form>
+    </div>
+
+    <!-- ── Result Panel ── -->
+    <div class="result-panel" id="resultPanel" hidden aria-live="polite">
+
+      <div class="result-success" id="resultSuccess" hidden>
+
+        <!-- Confidence tier banner — top of panel -->
+        <div class="confidence-banner" id="confidenceBanner">
+          <span class="banner-emoji" id="bannerEmoji">✓</span>
+          <span class="banner-message" id="bannerMessage"></span>
+        </div>
+
+        <div class="result-header">
+          <span class="result-icon" id="resultEmoji" aria-hidden="true">🌾</span>
+          <div>
+            <p class="result-label">Recommended Crop</p>
+            <h2 class="result-crop" id="resultCrop">—</h2>
+          </div>
+        </div>
+
+        <!-- Confidence + margin -->
+        <div class="confidence-bar-wrap">
+          <div class="confidence-label-row">
+            <span>Model Confidence</span>
+            <span class="confidence-pct" id="confidencePct">—</span>
+          </div>
+          <div class="confidence-track">
+            <div class="confidence-fill" id="confidenceFill"></div>
+          </div>
+          <div class="confidence-meta" id="confidenceMeta"></div>
+        </div>
+
+        <!-- ★ NEW: SHAP "Why this crop?" panel -->
+        <div class="shap-section" id="shapSection" hidden>
+          <div class="shap-header">
+            <h3>Why this crop?</h3>
+            <button class="shap-info" type="button"
+                    aria-label="Information about feature contributions"
+                    data-tooltip="Each bar shows how strongly this feature pushed the model towards (green) or away from (orange) this crop recommendation. Computed using SHAP values.">
+              ⓘ
+            </button>
+          </div>
+          <div id="shapBars" class="shap-bars" role="list"></div>
+          <p class="shap-legend">
+            <span class="legend-pos"></span>Pushes towards prediction
+            <span class="legend-neg"></span>Pushes away from prediction
+          </p>
+        </div>
+
+        <div class="top3-section">
+          <p class="top3-title">Alternative Crops</p>
+          <div id="top3List" class="top3-list" role="list"></div>
+        </div>
+
+      </div>
+
+      <div class="result-error" id="resultError" hidden>
+        <div class="error-icon" aria-hidden="true">⚠</div>
+        <p class="error-msg" id="errorMsg">An error occurred.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <section class="info-section">
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon" aria-hidden="true">🔬</div>
+        <h3>Explainable ML</h3>
+        <p>Every prediction comes with SHAP-based feature contributions, so you understand <em>why</em> the model recommended a specific crop.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon" aria-hidden="true">📊</div>
+        <h3>22 Crop Classes</h3>
+        <p>Recommendations across cereals, pulses, fruits, and cash crops, validated with 5-fold cross-validation at 98% F1.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon" aria-hidden="true">⚖️</div>
+        <h3>Calibrated Confidence</h3>
+        <p>Low-confidence predictions are flagged so you can review alternatives before making consequential agricultural decisions.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-project">
+        <p class="footer-title">END-TO-END PIPELINE &amp; WEB APP FOR CROP RECOMMENDATION SYSTEM</p>
+        <p class="footer-meta">MSc Dissertation — Machine Learning, Data Science &amp; Data Engineering</p>
+      </div>
+      <div class="footer-author">
+        <p class="footer-author-label">Developed by</p>
+        <p class="footer-author-name">Vinothkumar Durairaj</p>
+        <a href="mailto:vj482oo2@gmail.com" class="footer-author-email" aria-label="Email Vinothkumar Durairaj">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          vj482oo2@gmail.com
+        </a>
+      </div>
+    </div>
+    <p class="footer-tech">Built with Python · Scikit-learn · SHAP · Flask · Bootstrap</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

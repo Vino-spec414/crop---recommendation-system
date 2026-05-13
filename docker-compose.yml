@@ -1,0 +1,66 @@
+# ============================================================
+# docker-compose.yml — Crop Recommendation System
+# ============================================================
+# Provides two service profiles:
+#
+#   Production-like:  docker compose up
+#   Development:      docker compose --profile dev up
+#
+# The dev profile mounts the source code as a volume so Flask
+# restarts automatically on file changes — no rebuild needed.
+# ============================================================
+
+services:
+
+  # ── Production service ──────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: crop-recommendation-app
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - PYTHONPATH=/app/src
+    volumes:
+      # Persist trained model artefacts across container restarts
+      - model-artefacts:/app/models
+    healthcheck:
+      test: ["CMD", "python3", "-c",
+             "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
+
+  # ── Development service (hot reload) ────────────────────────
+  app-dev:
+    profiles: ["dev"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder         # Use builder stage — has all tools
+    container_name: crop-recommendation-dev
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=app/app.py
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+      - PYTHONPATH=/app/src
+    volumes:
+      # Mount entire project for live reload
+      - .:/app
+    command: >
+      python3 -m flask run
+      --host 0.0.0.0
+      --port 5000
+      --debug
+    restart: unless-stopped
+
+volumes:
+  model-artefacts:
+    driver: local

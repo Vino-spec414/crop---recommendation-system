@@ -1,0 +1,248 @@
+{
+  "best_model": "Random Forest",
+  "model_results": {
+    "Decision Tree": {
+      "accuracy": 95.45,
+      "precision": 96.06,
+      "recall": 95.45,
+      "f1": 95.49,
+      "cv_mean": 96.46,
+      "cv_std": 0.75
+    },
+    "Random Forest": {
+      "accuracy": 97.95,
+      "precision": 98.0,
+      "recall": 97.95,
+      "f1": 97.95,
+      "cv_mean": 98.0,
+      "cv_std": 0.55
+    },
+    "Gradient Boosting": {
+      "accuracy": 95.45,
+      "precision": 96.0,
+      "recall": 95.45,
+      "f1": 95.6,
+      "cv_mean": 95.79,
+      "cv_std": 1.38
+    }
+  },
+  "per_class": [
+    {
+      "crop": "apple",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "banana",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "blackgram",
+      "precision": 0.9524,
+      "recall": 1.0,
+      "f1": 0.9756,
+      "support": 20
+    },
+    {
+      "crop": "chickpea",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "coconut",
+      "precision": 0.9,
+      "recall": 0.9,
+      "f1": 0.9,
+      "support": 20
+    },
+    {
+      "crop": "coffee",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "cotton",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "grapes",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "jute",
+      "precision": 0.8636,
+      "recall": 0.95,
+      "f1": 0.9048,
+      "support": 20
+    },
+    {
+      "crop": "kidneybeans",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "lentil",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "maize",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "mango",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "mothbeans",
+      "precision": 1.0,
+      "recall": 0.95,
+      "f1": 0.9744,
+      "support": 20
+    },
+    {
+      "crop": "mungbean",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "muskmelon",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "orange",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "papaya",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "pigeonpeas",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "crop": "pomegranate",
+      "precision": 0.9,
+      "recall": 0.9,
+      "f1": 0.9,
+      "support": 20
+    },
+    {
+      "crop": "rice",
+      "precision": 0.9444,
+      "recall": 0.85,
+      "f1": 0.8947,
+      "support": 20
+    },
+    {
+      "crop": "watermelon",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    }
+  ],
+  "feature_importance": [
+    {
+      "feature": "rainfall",
+      "importance": 0.2428
+    },
+    {
+      "feature": "humidity",
+      "importance": 0.1999
+    },
+    {
+      "feature": "K",
+      "importance": 0.1487
+    },
+    {
+      "feature": "P",
+      "importance": 0.1311
+    },
+    {
+      "feature": "temperature",
+      "importance": 0.1232
+    },
+    {
+      "feature": "N",
+      "importance": 0.1089
+    },
+    {
+      "feature": "ph",
+      "importance": 0.0455
+    }
+  ],
+  "dataset": {
+    "total_records": 2200,
+    "n_classes": 22,
+    "n_features": 7,
+    "class_names": [
+      "apple",
+      "banana",
+      "blackgram",
+      "chickpea",
+      "coconut",
+      "coffee",
+      "cotton",
+      "grapes",
+      "jute",
+      "kidneybeans",
+      "lentil",
+      "maize",
+      "mango",
+      "mothbeans",
+      "mungbean",
+      "muskmelon",
+      "orange",
+      "papaya",
+      "pigeonpeas",
+      "pomegranate",
+      "rice",
+      "watermelon"
+    ],
+    "train_samples": 1760,
+    "test_samples": 440,
+    "class_balance": "balanced (100 per class)"
+  },
+  "generated_at": "2026-04-30T08:54:30.546348Z"
+}
