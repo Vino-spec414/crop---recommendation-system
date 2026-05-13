@@ -48,8 +48,8 @@ models/*.pkl
 !models/*.png
 
 # ── Data (download separately) ────────────────────────────────
-data/crop_dataset.csv
-data/soil_dataset.csv
+# data/crop_dataset.csv
+# data/soil_dataset.csv
 
 # ── Environment variables ─────────────────────────────────────
 .env
